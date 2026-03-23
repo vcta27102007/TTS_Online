@@ -2,25 +2,26 @@
 
 ## User
 - id: long
-- name: string (not blank)
+- ten: string (not blank)
 - email: string (optional, basic format)
-- role: Role (USER, MANAGER) - tuần 7 sẽ dùng auth
-- active: boolean
+- role: Role (`USER`, `MANAGER`) - tuần 7 sẽ dùng auth
+- dangHoatDong: boolean
+- createdAt: LocalDateTime
 
 ## Project
 - id: long
-- name: string (not blank)
-- description: string (optional)
-- tasks: list<Task>
-- members: list<User> (week 1 có thể chưa ép)
+- tenProject: string (not blank)
+- moTa: string (optional)
+- dsTask: list<Task>
+- members: list<User> (tuần 1 chưa quản lý membership riêng)
 
 ## Task
 - id: long
 - projectId: long
-- title: string (not blank)
-- description: string (optional)
-- status: TaskStatus (TODO, IN_PROGRESS, DONE)
+- tieuDe: string (not blank)
+- moTa: string (optional)
+- trangThai: TaskStatus (`CHUA_LAM`, `DANG_LAM`, `HOAN_THANH`)
 - deadline: LocalDateTime (optional)
-- assigneeUserId: Long (nullable)
-- createdAt: LocalDateTime
-- updatedAt: LocalDateTime
+- userDuocGiao: Long (nullable)
+- ngayTao: LocalDateTime
+- ngayCapNhat: LocalDateTime

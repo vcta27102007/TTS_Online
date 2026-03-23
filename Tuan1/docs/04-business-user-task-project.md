@@ -8,20 +8,26 @@
 
 ## Use cases
 ### UC1: Add Task
-Input: projectId, title, deadline(optional)
-Rule: title not blank, project tồn tại, deadline > now (nếu có)
-Output: Task mới với status TODO.
+Input: projectId, tieuDe, deadline(optional)
+Rule: tieuDe không được rỗng, project tồn tại, deadline > now (nếu có)
+Output: Task mới với trạng thái `CHUA_LAM`.
 
 ### UC2: Update Task
 Input: taskId + các field thay đổi
-Rule: task tồn tại, title not blank (nếu update), deadline > now (nếu update)
-Output: Task updatedAt đổi.
+Rule: task tồn tại, tieuDe không được rỗng (nếu update), deadline > now (nếu update)
+Output: `ngayCapNhat` của task thay đổi.
 
 ### UC3: Delete Task
 Input: taskId
-Rule: tồn tại mới xóa
+Rule: task tồn tại mới được xóa.
 
 ### UC4: Assign Task
 Input: taskId, userId
 Rule: task tồn tại, user tồn tại
-Output: task.assigneeUserId = userId
+Output: `task.userDuocGiao = userId`
+
+### UC5: List Task
+Hệ thống hỗ trợ list task theo:
+- project
+- user
+- trạng thái
