@@ -37,6 +37,7 @@ CREATE TABLE dbo.users (
     id BIGINT IDENTITY(1,1) PRIMARY KEY,
     ten NVARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
     role VARCHAR(30) NOT NULL,
     dang_hoat_dong BIT NOT NULL DEFAULT 1,
     created_at DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
@@ -307,3 +308,6 @@ JOIN dbo.projects p ON t.project_id = p.id
 GROUP BY p.ten_project, t.trang_thai
 ORDER BY p.ten_project, t.trang_thai;
 GO
+
+UPDATE dbo.users
+SET password = '$2a$10$7QJ8K6QwzPj7kR3Zk5q9OeXzWZ0qzJvYlQ5c6y9h8vTzY1u8y6a6K'

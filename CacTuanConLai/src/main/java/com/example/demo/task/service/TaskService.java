@@ -89,19 +89,25 @@ public class TaskService {
         if (!userRepository.existsById(userId)) {
             throw new NotFoundException("User không tồn tại");
         }
-        return taskRepository.findByUserId(userId);
+        return taskRepository.findByUser_Id(userId);
     }
 
     public List<TaskEntity> getByProject(Long projectId) {
         if (!projectRepository.existsById(projectId)) {
             throw new NotFoundException("Project không tồn tại");
         }
-        return taskRepository.findByProjectId(projectId);
+        return taskRepository.findByProject_Id(projectId);
     }
 
     private void validateBusinessRule(TaskRequest request) {
         if (request.getDeadline() != null && !request.getDeadline().isAfter(LocalDateTime.now())) {
             throw new BadRequestException("Deadline phải lớn hơn thời điểm hiện tại");
         }
+    }
+
+    public List<TaskEntity> getMyTasks(String email) {
+        UserEntity user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("Không tìm thấy user với email = " + email));
+        return taskRepository.findByUser_Id(user.getId());
     }
 }

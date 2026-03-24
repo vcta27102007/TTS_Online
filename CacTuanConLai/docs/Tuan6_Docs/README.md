@@ -28,3 +28,11 @@
   "data": []
 }
 ```
+
+## Test Postman
+
+- Tạo task hợp lệ → 201 Created
+- Thiếu tiêu đề → 400 Bad Request
+- Deadline quá khứ → 400 Bad Request
+- User không tồn tại → 404 Not Found
+- Project không tồn tại → 404 Not Found

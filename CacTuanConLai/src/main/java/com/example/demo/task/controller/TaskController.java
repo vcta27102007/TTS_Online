@@ -9,6 +9,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
 
 import java.util.List;
 
@@ -48,5 +49,13 @@ public class TaskController {
     @GetMapping("/project/{projectId}")
     public ResponseEntity<ApiResponse<List<TaskEntity>>> getByProject(@PathVariable Long projectId) {
         return ResponseEntity.ok(ApiResponse.success("Lấy danh sách task theo project thành công", taskService.getByProject(projectId)));
+    }
+
+    @GetMapping("/my")
+    public ResponseEntity<ApiResponse<List<TaskEntity>>> getMyTasks(Authentication authentication) {
+        String email = authentication.getName();
+        return ResponseEntity.ok(
+                ApiResponse.success("Lấy danh sách task của tôi thành công", taskService.getMyTasks(email))
+        );
     }
 }
