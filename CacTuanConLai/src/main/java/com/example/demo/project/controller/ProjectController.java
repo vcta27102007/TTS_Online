@@ -1,7 +1,9 @@
 package com.example.demo.project.controller;
 
+import com.example.demo.common.response.ApiResponse;
 import com.example.demo.project.entity.ProjectEntity;
 import com.example.demo.project.service.ProjectService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,17 +20,18 @@ public class ProjectController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ProjectEntity>> getAll() {
-        return ResponseEntity.ok(projectService.getAll());
+    public ResponseEntity<ApiResponse<List<ProjectEntity>>> getAll() {
+        return ResponseEntity.ok(ApiResponse.success("Lấy danh sách project thành công", projectService.getAll()));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProjectEntity> getById(@PathVariable Long id) {
-        return ResponseEntity.ok(projectService.getById(id));
+    public ResponseEntity<ApiResponse<ProjectEntity>> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(ApiResponse.success("Lấy project thành công", projectService.getById(id)));
     }
 
     @PostMapping
-    public ResponseEntity<ProjectEntity> create(@RequestBody ProjectEntity request) {
-        return ResponseEntity.ok(projectService.create(request));
+    public ResponseEntity<ApiResponse<ProjectEntity>> create(@RequestBody ProjectEntity request) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(ApiResponse.created("Tạo project thành công", projectService.create(request)));
     }
 }
