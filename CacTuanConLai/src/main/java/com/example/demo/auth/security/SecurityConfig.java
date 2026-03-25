@@ -33,6 +33,7 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
 
                         .requestMatchers(HttpMethod.POST, "/api/projects/**").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.PUT, "/api/projects/**").hasRole("MANAGER")
@@ -46,7 +47,6 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/api/tasks/**").hasRole("MANAGER")
 
                         .requestMatchers("/api/users/**").hasRole("MANAGER")
-
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
