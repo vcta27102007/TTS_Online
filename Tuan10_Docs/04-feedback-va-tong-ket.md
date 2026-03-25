@@ -27,24 +27,5 @@
 
 ---
 
-## 3. Feedback giả định sau buổi demo
-- Cấu trúc project rõ ràng, dễ hiểu
-- Flow auth và phân quyền trình bày ổn
-- Demo nên đi đúng một luồng ngắn, tránh quá nhiều endpoint
-- Cần nhấn mạnh hơn phần business rule để thể hiện tư duy backend
-- Nếu có thời gian nên bổ sung deploy thực tế
-
----
-
-## 4. Hướng cải thiện tiếp theo
-- Tách lớp response/request DTO đầy đủ hơn
-- Thêm pagination cho list API
-- Tách role thành enum hoặc bảng riêng
-- Bổ sung refresh token + logout
-- Thêm test cho AuthService và Controller
-- Deploy project lên Render / Railway / VPS
-
----
-
-## 5. Kết luận
+## 3. Kết luận
 Sau 10 tuần, project đã đạt được mục tiêu chính của một bài backend internship: có CRUD, có bảo mật, có business rule, có test cơ bản và có tài liệu trình bày. Đây là nền tảng tốt để tiếp tục học sâu hơn về kiến trúc backend và triển khai thực tế.
